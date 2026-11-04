@@ -18,16 +18,18 @@ Built with [Arc Studio](https://studio.arc.io)
 
 - **Frontend**: React 18, Vite, TypeScript, Tailwind CSS, wagmi v2, viem, ConnectKit
 - **Smart contracts**: Solidity 0.8.28, Foundry, OpenZeppelin 5.6.1
-- **Chain**: Arc Testnet (Chain ID 5042002)
-- **Token**: USDC ERC-20 (6 decimals) at `0x3600000000000000000000000000000000000000`
+- **Chain**: Arc Mainnet (Chain ID 5042)
+- **Token**: USDC (native, 18 decimals) at `0x3600000000000000000000000000000000000000`
+
+## App
+
+Live at: https://scrolls-app.vercel.app
 
 ## Contracts
 
 | Contract | Address | Explorer |
 |---|---|---|
-| DocumentPaywall | `0x97134d6782e23713f7edf38275b017d394ef80f3` | [View](https://explorer.testnet.arc.io/address/0x97134d6782e23713f7edf38275b017d394ef80f3) |
-
-Constructor args: `_usdcToken` = Arc Testnet USDC, `_creator` = deployer wallet, `initialOwner` = deployer wallet.
+| ContentPaywall | `0x98ad696951e36a256702517600d17f63db76a0d2` | [View](https://explorer.arc.io/address/0x98ad696951e36a256702517600d17f63db76a0d2) |
 
 ## Development
 
