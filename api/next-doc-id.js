@@ -29,8 +29,8 @@ async function saveDb(db) {
 export default async function handler(req, res) {
   const db = await getDb();
   
-  const CONTRACT = '0xf34fcaefbf4da587738b08df0029ffac2c9bb69e';
-  const RPC_URL = 'https://rpc.testnet.arc.io';
+  const CONTRACT = '0x98ad696951e36a256702517600d17f63db76a0d2';
+  const RPC_URL = 'https://rpc.mainnet.arc.io';
   
   let candidate = db.nextId || 4;
   while (true) {

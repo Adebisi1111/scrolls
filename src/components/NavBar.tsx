@@ -4,7 +4,7 @@ import { BookOpen, PenLine, AlertTriangle, RefreshCw } from 'lucide-react'
 import { useAccount, useChainId } from 'wagmi'
 import { useRepairChain, ARC_GOOD_RPC } from '@/useRepairChain'
 
-const ARC_TESTNET_ID = 5042002 // arc-studio-allow-onchain-literal
+const ARC_MAINNET_ID = 5042 // arc-studio-allow-onchain-literal
 
 export default function NavBar() {
   const { pathname } = useLocation()
@@ -12,7 +12,7 @@ export default function NavBar() {
   const chainId = useChainId()
   const { switching, switched, error, addAndSwitch } = useRepairChain()
 
-  const wrongChain = isConnected && chainId !== ARC_TESTNET_ID
+  const wrongChain = isConnected && chainId !== ARC_MAINNET_ID
   const showBanner = isConnected && (wrongChain || error)
 
   return (

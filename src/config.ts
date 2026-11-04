@@ -1,46 +1,38 @@
 /**
- * wagmi configuration
- * Built with Arc Studio — https://studio.arc.io
+ * wagmi configuration — Arc Mainnet
  */
 
 import { http, fallback, createConfig } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
-import { arcTestnet as _arcTestnet } from 'viem/chains'
+import { defineChain } from 'viem'
 import { injected } from 'wagmi/connectors'
 import { registerChain } from './tracing'
-import { ARC_GOOD_RPC } from './useRepairChain'
 
-// Live Arc Testnet RPCs. The public thirdweb endpoint sends
-// `Access-Control-Allow-Origin: *` so browser fetches work; `/rpc` is the
-// backend proxy fallback (same-origin, always up when the backend runs).
-const ARC_PUBLIC_RPCS = [
-  ARC_GOOD_RPC, // https://arc-testnet.rpc.thirdweb.com
-  '/rpc',
-]
-
-// Override rpcUrls so wallet_addEthereumChain sends a working RPC to MetaMask.
-export const arcTestnet = {
-  ..._arcTestnet,
+export const arcMainnet = defineChain({
+  id: 5042,
+  name: 'Arc Mainnet',
+  nativeCurrency: { name: 'USDC', symbol: 'USDC', decimals: 18 },
   rpcUrls: {
-    default: { http: ARC_PUBLIC_RPCS },
-    public: { http: ARC_PUBLIC_RPCS },
+    default: { http: ['https://rpc.mainnet.arc.io'] },
+    public: { http: ['https://rpc.mainnet.arc.io'] },
   },
-} as const
+  blockExplorers: {
+    default: { name: 'Arcscan', url: 'https://explorer.arc.io' },
+  },
+})
 
-registerChain(arcTestnet.id, '/rpc')
+registerChain(arcMainnet.id, '/rpc')
 
-console.log('[Scrolls] wagmi primary RPC:', ARC_PUBLIC_RPCS[0])
-
-// Transports: use the backend proxy.
-const arcTestnetTransport = fallback(
-  ARC_PUBLIC_RPCS.map((url) => http(url)),
-)
+const arcMainnetTransport = fallback([
+  http('https://rpc.mainnet.arc.io'),
+  http('/rpc'),
+])
 
 export const config = createConfig({
-  chains: [arcTestnet, mainnet],
+  chains: [arcMainnet, mainnet],
   connectors: [injected()],
   transports: {
-    [arcTestnet.id]: arcTestnetTransport,
+    [arcMainnet.id]: arcMainnetTransport,
     [mainnet.id]: http(),
   },
 })

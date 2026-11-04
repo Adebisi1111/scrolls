@@ -13,15 +13,15 @@
  */
 
 import { useCallback, useState } from 'react'
-import { arcTestnet as _arcTestnet } from 'viem/chains'
+import { arcMainnet as _arcMainnet } from '@/config'
 
 // Live Arc Testnet RPC. The old default (rpc.testnet.arc.network) is DEAD —
 // wallets configured with it fail every broadcast with "Failed to fetch".
 // thirdweb's endpoint sends `Access-Control-Allow-Origin: *`, so browser and
 // wallet content-script fetches both work.
-export const ARC_GOOD_RPC = 'https://arc-testnet.rpc.thirdweb.com'
+export const ARC_GOOD_RPC = 'https://rpc.mainnet.arc.io'
 
-const CHAIN_ID_HEX = `0x${_arcTestnet.id.toString(16)}`
+const CHAIN_ID_HEX = `0x${_arcMainnet.id.toString(16)}`
 
 type EthProvider = { request: (a: { method: string; params?: unknown[] }) => Promise<unknown> }
 
@@ -52,10 +52,10 @@ export function useRepairChain() {
         method: 'wallet_addEthereumChain',
         params: [{
           chainId: CHAIN_ID_HEX,
-          chainName: _arcTestnet.name,
-          nativeCurrency: _arcTestnet.nativeCurrency,
+          chainName: _arcMainnet.name,
+          nativeCurrency: _arcMainnet.nativeCurrency,
           rpcUrls: [ARC_GOOD_RPC],
-          blockExplorerUrls: [_arcTestnet.blockExplorers?.default.url ?? 'https://explorer.testnet.arc.io'],
+          blockExplorerUrls: [_arcMainnet.blockExplorers?.default.url ?? 'https://explorer.arc.io'],
         }],
       })
       console.log('[Scrolls] Chain added/switched. Active RPC:', ARC_GOOD_RPC)

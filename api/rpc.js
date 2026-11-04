@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-  const urls = ['https://arc-testnet.rpc.thirdweb.com', 'https://rpc.testnet.arc.io'];
+  const urls = ['https://rpc.mainnet.arc.io'];
   for (const url of urls) {
     try {
       const upstream = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req.body) });

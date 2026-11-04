@@ -9,7 +9,7 @@ import {
 } from 'wagmi'
 import { ConnectKitButton } from 'connectkit'
 import { erc20Abi } from 'viem'
-import { arcTestnet } from '@/config'
+import { arcMainnet } from '@/config'
 import { useRepairChain } from '@/useRepairChain'
 import { toast } from 'sonner'
 import { Lock, Unlock, CheckCircle, AlertCircle, Loader2, ExternalLink, Download } from 'lucide-react'
@@ -18,7 +18,7 @@ import { CONTENT_PAYWALL_ADDRESS, CONTENT_PAYWALL_ABI } from '@/contract'
 import { getUsdc, buildTxExplorerUrl } from '@/onchain-facts'
 import { parseAmount, formatUsdc } from '@/onchain-money'
 
-const CHAIN_ID = arcTestnet.id
+const CHAIN_ID = arcMainnet.id
 const USDC_ADDRESS = getUsdc(CHAIN_ID)!.address as `0x${string}`
 
 const glassCard: React.CSSProperties = {

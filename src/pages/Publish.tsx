@@ -12,12 +12,12 @@ import {
   PenLine, CheckCircle, Loader2, ArrowRight,
   UploadCloud, FileText, X, AlertCircle,
 } from 'lucide-react'
-import { arcTestnet } from '@/config'
+import { arcMainnet } from '@/config'
 import { useRepairChain } from '@/useRepairChain'
 import { reserveDocId, publishArticle } from '@/lib/api'
 import { CONTENT_PAYWALL_ADDRESS, CONTENT_PAYWALL_ABI } from '@/contract'
 
-const CHAIN_ID = arcTestnet.id
+const CHAIN_ID = arcMainnet.id
 
 const glassCard: React.CSSProperties = {
   background: 'rgba(255,255,255,0.72)',
